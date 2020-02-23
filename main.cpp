@@ -30,10 +30,27 @@ class Graph{
 
     string dijkstra(int start, int end){
         this->initializeDijkstra(start);
+        this->fullDijkstra();
         if(paths->compare("")){
             return "No path to destiny";
         }else{
             return paths[end];
+        }
+    }
+
+    void fullDijkstra(){
+        for(int j=0;j<nodes-1;j++) {
+
+            int closest = findMinDistance();
+            added[closest] = true;
+
+            for (int i = 0; i < nodes; i++) {
+                int distance = matrix[closest][i];
+                if (distance < inf && !added[i] && distances[i] > distances[closest] + distance) {
+                    paths[i] = paths[closest] + " " + to_string(closest);
+                    distances[i] = distances[closest] + distance;
+                }
+            }
         }
     }
 
