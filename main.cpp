@@ -28,7 +28,45 @@ class Graph{
         }
     }
 
+    string dijkstra(int start, int end){
+        this->initializeDijkstra(start);
+        if(paths->compare("")){
+            return "No path to destiny";
+        }else{
+            return paths[end];
+        }
+    }
 
+    void initializeDijkstra(int start){
+        distances = new int[nodes];
+        paths = new string[nodes];
+
+        for (int i = 0; i < nodes; i++) {
+            distances[i]=matrix[start][i];
+            if(distances[i]<inf){
+                paths[i]= start;
+            }else{
+                paths[i]= "";
+            }
+        }
+
+        for(int i=0;i<nodes;i++){
+            added[i]=false;
+        }
+
+    }
+
+    int findMinDistance(){
+        int min= distances[0];
+        int currentMin = 0;
+        for(int i=0;i< nodes; i++){
+            if(distances[i]<min && !added[i]){
+                min=distances[i];
+                currentMin=i;
+            }
+        }
+        return currentMin;
+    }
 
 
 };
