@@ -21,6 +21,7 @@ private:
     int nodes;
     string *paths;
     int inf=std::numeric_limits<int>::max();
+
     void fullDijkstra(int start){
         for(int j=0;j<nodes-1;j++) {
 
@@ -71,6 +72,10 @@ private:
     }
 
 public:
+    int getNodes(){
+        return this->nodes;
+    }
+
     void addEdge(int src, int dest, int weight){
         matrix[src][dest] = weight;
         matrix[dest][src] = weight;

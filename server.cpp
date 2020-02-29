@@ -1,12 +1,8 @@
-#include <iostream>
-#include <limits>
 #include <string>
 using namespace std;
 
 #include <unistd.h>
-#include <stdio.h>
 #include <sys/socket.h>
-#include <stdlib.h>
 #include <netinet/in.h>
 #include <cstring>
 #include "Graph.h"
@@ -14,70 +10,116 @@ using namespace std;
 #define PORT 8080
 
 
+void addEdge(int socket, Graph* g, string message){
+    int src,dest, weigth;
+    int nodes=g->getNodes();
+    int pos;
+    try {
+        pos=message.find_first_of(";");
+        src = stoi(message.substr(0, pos));
+        message.erase(0, pos + 1);
+        pos=message.find_first_of(";");
+        dest = stoi(message.substr(0, pos));
+        message.erase(0, pos + 1);
+        pos=message.find_first_of(";");
+        weigth = stoi(message.substr(0, pos));
+        message.erase(0, pos + 1);
 
-
-int support() {
-    Graph g = *new Graph();
-    g.generateMatrix(9);
-    g.addEdge(0,1,4);
-    g.addEdge(0,7,8);
-    g.addEdge(1,7,11);
-    g.addEdge(1,2,8);
-    g.addEdge(2,8,2);
-    g.addEdge(2,5,4);
-    g.addEdge(2,3,7);
-    g.addEdge(3,5,14);
-    g.addEdge(3,4,9);
-    g.addEdge(4,5,10);
-    g.addEdge(5,6,2);
-    g.addEdge(6,8,6);
-    g.addEdge(6,7,1);
-    g.addEdge(7,8,7);
-    string r=g.dijkstra(0,8);
-    printf("%s\n", r.c_str());
+        if(nodes>src && nodes>dest && weigth>0 && src >-1 && dest >-1){
+            g->addEdge(src,dest,weigth);
+            send(socket, "ok", 2, 0);
+        }else{
+            send(socket, "error", 5, 0);
+        }
+    }catch(std::exception const & e){
+        send(socket, "error", 5, 0);
+    }
 }
 
-void connectToGraph(int new_socket, char buffer[1024]){
-    read( new_socket , buffer, 1024);
-    Graph* g = new Graph();
-    g->generateMatrix(atoi(buffer));
+void setNumNodes(int socket, Graph* g, string message){
+    int nodes;
+    int pos;
+    try {
+        pos=message.find_first_of(";");
+        nodes = stoi(message.substr(0, pos));
+        if (nodes > 1) {
+            g->generateMatrix(nodes);
+            send(socket, "ok", 2, 0);
+        } else {
+            send(socket, "error", 5, 0);
+        }
+    } catch (std::exception const & e) {
+        send(socket, "error", 5, 0);
+    }
+}
 
-    read( new_socket , buffer, 1024);
-    string finish= buffer;
-    int src,dest, weigth, start, end;
 
-    while(finish == "continue" ){
-        read( new_socket , buffer, 1024);
-        src=atoi(buffer);
-        read( new_socket , buffer, 1024);
-        dest=atoi(buffer);
-        read( new_socket , buffer, 1024);
-        weigth=atoi(buffer);
-        read( new_socket , buffer, 1024);
-        finish=buffer;
-        g->addEdge(src,dest,weigth);
+void calculatePath(int socket, Graph* g, string message){
+    int start, end;
+    int pos;
+    try {
+        pos=message.find_first_of(";");
+        start = stoi(message.substr(0, pos));
+        message.erase(0, pos + 1);
+        pos=message.find_first_of(";");
+        end = stoi(message.substr(0, pos));
+        message.erase(0, pos + 1);
+
+        if (start > -1 && end >-1 && start<g->getNodes() && end<g->getNodes()) {
+            string pathSt = g->dijkstra(start, end);
+            char path[pathSt.size() + 1];
+            strcpy(path, pathSt.c_str());
+                send(socket, path, strlen(path), 0);
+            } else {
+                send(socket, "error", 5, 0);
+            }
+        } catch (std::exception const & e) {
+            send(socket, "error", 5, 0);
+        }
     }
 
-    read( new_socket , buffer, 1024);
-    start=atoi(buffer);
-    read( new_socket , buffer, 1024);
-    end=atoi(buffer);
 
-    string pathSt=g->dijkstra(start, end);
-    char path[pathSt.size()+1];
-    strcpy(path, pathSt.c_str());
-    printf("%s\n",buffer );
-    send(new_socket , path , strlen(path), 0 );
-    printf("Hello message sent\n");
+
+
+void manageCalls(int server_fd, struct sockaddr_in address, int addrlen){
+    char buffer[1024];
+    bool flag1=true;
+    bool flag2=true;
+    string message;
+    string command;
+    int pos;
+    int socket;
+    Graph* g = new Graph;
+    while(flag1){
+        socket = accept(server_fd, (struct sockaddr *)&address,(socklen_t*)&addrlen);
+        flag2=true;
+        while(flag2) {
+            read(socket, buffer, 1024);
+            message = buffer;
+            pos = message.find_first_of(";");
+            command = message.substr(0, pos);
+            message.erase(0, pos + 1);
+
+            if (command == "setNodes") {
+                setNumNodes(socket, g, message);
+            } else if (command == "addEdge") {
+                addEdge(socket, g, message);
+            } else if (command == "calculate") {
+                calculatePath(socket, g, message);
+            } else if (command == "end") {
+                flag2 = false;
+            }
+        }
+    }
 }
+
 
 int main(int argc, char const *argv[])
 {
-    int server_fd, new_socket;
+    int server_fd;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
-    char buffer[1024] = {0};
 
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd == 0)
@@ -110,14 +152,8 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE);
     }
 
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address,
-                             (socklen_t*)&addrlen))<0)
-    {
-        perror("Aceptance has failed");
-        exit(EXIT_FAILURE);
-    }
+    manageCalls( server_fd, address, addrlen);
 
-    connectToGraph(new_socket,buffer);
     return 0;
 }
 

@@ -3,4 +3,7 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled server.cpp Graph.cpp Graph.h client.cpp)
+add_executable(untitled server.cpp Graph.cpp Graph.h)
+
+
+add_executable(QtTest server.cpp)
