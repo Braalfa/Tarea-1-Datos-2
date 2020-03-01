@@ -57,7 +57,7 @@ private:
             for (int i = 0; i < nodes; i++) {
                 int distance = matrix[closest][i];
                 if (distance < inf && !added[i]  && distances[i] > distances[closest] + distance) {
-                    paths[i] = paths[closest] + " " + to_string(closest);
+                    paths[i] = paths[closest] + " "+ to_string(closest);
                     distances[i] = distances[closest] + distance;
                 }
             }

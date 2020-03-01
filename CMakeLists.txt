@@ -3,7 +3,7 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled Server/server.cpp Server/Graph.cpp Server/Graph.h)
+add_executable(untitled Server/server.cpp Server/Graph.cpp Server/Graph.h Server/server.h)
 
 
 add_executable(QtTest Server/server.cpp)
