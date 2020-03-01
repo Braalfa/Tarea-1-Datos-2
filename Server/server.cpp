@@ -10,6 +10,14 @@ using namespace std;
 #define PORT 8080
 
 
+/**
+ * @param socket The socket number
+ * @param g The graph
+ * @param message The message send by the client
+ * @return Sends path to client
+ *
+ * Adds an edge to the graph
+ */
 void addEdge(int socket, Graph* g, string message){
     int src,dest, weigth;
     int nodes=g->getNodes();
@@ -36,6 +44,15 @@ void addEdge(int socket, Graph* g, string message){
     }
 }
 
+
+/**
+ * @param socket The socket numer
+ * @param g The graph
+ * @param message The message send by the client
+ * @return void
+ *
+ * Method to set the number of nodes of the graph
+ */
 void setNumNodes(int socket, Graph* g, string message){
     int nodes;
     int pos;
@@ -53,7 +70,14 @@ void setNumNodes(int socket, Graph* g, string message){
     }
 }
 
-
+/**
+ * @param socket The socket numer
+ * @param g The graph
+ * @param message The message send by the client
+ * @return Sends path to client
+ *
+ * Method to calculate shortest path
+ */
 void calculatePath(int socket, Graph* g, string message){
     int start, end;
     int pos;
@@ -80,7 +104,10 @@ void calculatePath(int socket, Graph* g, string message){
 
 
 
-
+/**
+ * @return void
+ * Method to manage the messages send by the client
+ */
 void manageCalls(int server_fd, struct sockaddr_in address, int addrlen){
     char buffer[1024];
     bool flag1=true;
@@ -114,6 +141,10 @@ void manageCalls(int server_fd, struct sockaddr_in address, int addrlen){
 }
 
 
+
+/**
+ * Main method fro the program, initilices the server
+ */
 int main(int argc, char const *argv[])
 {
     int server_fd;

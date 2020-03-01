@@ -24,7 +24,10 @@ QPushButton* restartBtn;
 
 
 int nodes;
-
+/**
+ * Mainwindow shown to the user
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -53,12 +56,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+/**
+ * Exit method
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
     end();
 }
 
+/**
+ * Method to show user a message
+ */
 void MainWindow::sendMessage(QString header, QString message){
     QMessageBox msgBox;
     msgBox.setText(header);
@@ -67,7 +76,9 @@ void MainWindow::sendMessage(QString header, QString message){
     msgBox.exec();
 
 }
-
+/**
+ * On click action for calculate create graph button
+ */
 void MainWindow::firstClick(){
     QString text= nodesTxt->text();
     createGraph(text.toStdString());
@@ -81,6 +92,9 @@ void MainWindow::firstClick(){
 
 }
 
+/**
+ * On click action for calculate add edge button
+ */
 void MainWindow::addEdge(){
     QString src=sourceTxt->text();
     QString end=destinyTxt->text();
@@ -94,6 +108,9 @@ void MainWindow::addEdge(){
     }
 }
 
+/**
+ * On click action for calculate button, shows shortest path
+ */
 void MainWindow::askPath(){
     QString src=startTxt->text();
     QString dest=endTxt->text();
@@ -108,6 +125,9 @@ void MainWindow::askPath(){
 
 }
 
+/**
+ * On click action for restart button
+ */
 void MainWindow::restart(){
     sendStrMessage("restart");
     initiateBtn->setDisabled(false);

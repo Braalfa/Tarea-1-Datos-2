@@ -17,10 +17,25 @@ public:
     ~MainWindow();
 
 private slots:
+    /**
+    * On click action for calculate button, shows shortest path
+    */
     void askPath();
+    /**
+    * On click action for calculate add edge button
+    */
     void addEdge();
+    /**
+    * On click action for calculate create graph button
+    */
     void firstClick();
+    /**
+    * Method to show user a message
+    */
     void sendMessage(QString header,QString message);
+    /**
+    * On click action for restart button
+    */
     void restart();
 
 private:
