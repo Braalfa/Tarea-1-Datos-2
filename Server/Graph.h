@@ -156,7 +156,7 @@ public:
         if(paths[end].empty()){
             return "No path to destiny";
         }else{
-            return paths[end];
+            return paths[end]+" " + to_string(end);
         }
     }
 
