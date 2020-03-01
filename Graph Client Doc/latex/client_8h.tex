@@ -1,0 +1,98 @@
+\section{C\+Lion\+Projects/untitled/\+Client/client.h File Reference}
+\label{client_8h}\index{C\+Lion\+Projects/untitled/\+Client/client.\+h@{C\+Lion\+Projects/untitled/\+Client/client.\+h}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for client.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ initiate\+Client} ()
+\item 
+string \textbf{ get\+Dijkstra} (string src, string dest)
+\item 
+void \textbf{ create\+Edge} (string start, string \textbf{ end}, string weigth)
+\item 
+void \textbf{ create\+Graph} (string size)
+\item 
+void \textbf{ send\+Str\+Message} (string message\+St)
+\item 
+string \textbf{ ask\+Answer} () void \textbf{ end}()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\label{client_8h_a0853315fb5e55e739f44b607af8e2bd3}} 
+\index{client.\+h@{client.\+h}!ask\+Answer@{ask\+Answer}}
+\index{ask\+Answer@{ask\+Answer}!client.\+h@{client.\+h}}
+\subsubsection{ask\+Answer()}
+{\footnotesize\ttfamily string ask\+Answer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Waits for answer from server \begin{DoxyReturn}{Returns}
+Answer from server Tells server to end the connection
+\end{DoxyReturn}
+Waits for answer from server \begin{DoxyReturn}{Returns}
+Answer from server 
+\end{DoxyReturn}
+\mbox{\label{client_8h_a84311d819f2a8eadbaca4b5dfb5a40f7}} 
+\index{client.\+h@{client.\+h}!create\+Edge@{create\+Edge}}
+\index{create\+Edge@{create\+Edge}!client.\+h@{client.\+h}}
+\subsubsection{create\+Edge()}
+{\footnotesize\ttfamily void create\+Edge (\begin{DoxyParamCaption}\item[{string}]{start,  }\item[{string}]{end,  }\item[{string}]{weigth }\end{DoxyParamCaption})}
+
+Tells the server to create an edge 
+\begin{DoxyParams}{Parameters}
+{\em start} & Node to start from \\
+\hline
+{\em end} & Node to get to \\
+\hline
+{\em weigth} & Weigth of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\label{client_8h_a0afabd2a517298c77d89d2eef537c482}} 
+\index{client.\+h@{client.\+h}!create\+Graph@{create\+Graph}}
+\index{create\+Graph@{create\+Graph}!client.\+h@{client.\+h}}
+\subsubsection{create\+Graph()}
+{\footnotesize\ttfamily void create\+Graph (\begin{DoxyParamCaption}\item[{string}]{size }\end{DoxyParamCaption})}
+
+Tells server to create graph 
+\begin{DoxyParams}{Parameters}
+{\em size} & Number of nodes for the graph \\
+\hline
+\end{DoxyParams}
+\mbox{\label{client_8h_abe3c1a09d8a97249b12e174b0b6fe229}} 
+\index{client.\+h@{client.\+h}!get\+Dijkstra@{get\+Dijkstra}}
+\index{get\+Dijkstra@{get\+Dijkstra}!client.\+h@{client.\+h}}
+\subsubsection{get\+Dijkstra()}
+{\footnotesize\ttfamily string get\+Dijkstra (\begin{DoxyParamCaption}\item[{string}]{src,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+Tells the server to calculate the shortest path 
+\begin{DoxyParams}{Parameters}
+{\em src} & Start node \\
+\hline
+{\em dest} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shortest path 
+\end{DoxyReturn}
+\mbox{\label{client_8h_a9bdb5cb71771f3cf029e66d99bdbbeca}} 
+\index{client.\+h@{client.\+h}!initiate\+Client@{initiate\+Client}}
+\index{initiate\+Client@{initiate\+Client}!client.\+h@{client.\+h}}
+\subsubsection{initiate\+Client()}
+{\footnotesize\ttfamily int initiate\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initiates the client, connects to the server \mbox{\label{client_8h_a6067b6436ed3d55e27cf993a1d346a09}} 
+\index{client.\+h@{client.\+h}!send\+Str\+Message@{send\+Str\+Message}}
+\index{send\+Str\+Message@{send\+Str\+Message}!client.\+h@{client.\+h}}
+\subsubsection{send\+Str\+Message()}
+{\footnotesize\ttfamily void send\+Str\+Message (\begin{DoxyParamCaption}\item[{string}]{message\+St }\end{DoxyParamCaption})}
+
+Sends string message to socket 
+\begin{DoxyParams}{Parameters}
+{\em message\+St} & message \\
+\hline
+\end{DoxyParams}

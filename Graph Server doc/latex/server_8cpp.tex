@@ -1,0 +1,110 @@
+\section{C\+Lion\+Projects/untitled/\+Server/server.cpp File Reference}
+\label{server_8cpp}\index{C\+Lion\+Projects/untitled/\+Server/server.\+cpp@{C\+Lion\+Projects/untitled/\+Server/server.\+cpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include \char`\"{}Graph.\+h\char`\"{}}\newline
+Include dependency graph for server.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ P\+O\+RT}~8080
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ add\+Edge} (int socket, \textbf{ Graph} $\ast$g, string message)
+\item 
+void \textbf{ set\+Num\+Nodes} (int socket, \textbf{ Graph} $\ast$g, string message)
+\item 
+void \textbf{ calculate\+Path} (int socket, \textbf{ Graph} $\ast$g, string message)
+\item 
+void \textbf{ manage\+Calls} (int server\+\_\+fd, struct sockaddr\+\_\+in address, int addrlen)
+\item 
+int \textbf{ main} (int argc, char const $\ast$argv[$\,$])
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\label{server_8cpp_a614217d263be1fb1a5f76e2ff7be19a2}} 
+\index{server.\+cpp@{server.\+cpp}!P\+O\+RT@{P\+O\+RT}}
+\index{P\+O\+RT@{P\+O\+RT}!server.\+cpp@{server.\+cpp}}
+\subsubsection{P\+O\+RT}
+{\footnotesize\ttfamily \#define P\+O\+RT~8080}
+
+
+
+\subsection{Function Documentation}
+\mbox{\label{server_8cpp_ae59b23cfc7d99d16c56c9cb9491d3d70}} 
+\index{server.\+cpp@{server.\+cpp}!add\+Edge@{add\+Edge}}
+\index{add\+Edge@{add\+Edge}!server.\+cpp@{server.\+cpp}}
+\subsubsection{add\+Edge()}
+{\footnotesize\ttfamily void add\+Edge (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{\textbf{ Graph} $\ast$}]{g,  }\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & The socket number \\
+\hline
+{\em g} & The graph \\
+\hline
+{\em message} & The message send by the client \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sends path to client
+\end{DoxyReturn}
+Adds an edge to the graph \mbox{\label{server_8cpp_a48379314185e11e4e8c48b867f11282d}} 
+\index{server.\+cpp@{server.\+cpp}!calculate\+Path@{calculate\+Path}}
+\index{calculate\+Path@{calculate\+Path}!server.\+cpp@{server.\+cpp}}
+\subsubsection{calculate\+Path()}
+{\footnotesize\ttfamily void calculate\+Path (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{\textbf{ Graph} $\ast$}]{g,  }\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & The socket numer \\
+\hline
+{\em g} & The graph \\
+\hline
+{\em message} & The message send by the client \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sends path to client
+\end{DoxyReturn}
+Method to calculate shortest path \mbox{\label{server_8cpp_abf9e6b7e6f15df4b525a2e7705ba3089}} 
+\index{server.\+cpp@{server.\+cpp}!main@{main}}
+\index{main@{main}!server.\+cpp@{server.\+cpp}}
+\subsubsection{main()}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char const $\ast$}]{argv[$\,$] }\end{DoxyParamCaption})}
+
+Main method fro the program, initilices the server \mbox{\label{server_8cpp_a72fec53978226682dfa1a5f395f44298}} 
+\index{server.\+cpp@{server.\+cpp}!manage\+Calls@{manage\+Calls}}
+\index{manage\+Calls@{manage\+Calls}!server.\+cpp@{server.\+cpp}}
+\subsubsection{manage\+Calls()}
+{\footnotesize\ttfamily void manage\+Calls (\begin{DoxyParamCaption}\item[{int}]{server\+\_\+fd,  }\item[{struct sockaddr\+\_\+in}]{address,  }\item[{int}]{addrlen }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+void Method to manage the messages send by the client 
+\end{DoxyReturn}
+\mbox{\label{server_8cpp_a722a0dbb1d3b9b58d2f9dd4d550c9830}} 
+\index{server.\+cpp@{server.\+cpp}!set\+Num\+Nodes@{set\+Num\+Nodes}}
+\index{set\+Num\+Nodes@{set\+Num\+Nodes}!server.\+cpp@{server.\+cpp}}
+\subsubsection{set\+Num\+Nodes()}
+{\footnotesize\ttfamily void set\+Num\+Nodes (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{\textbf{ Graph} $\ast$}]{g,  }\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket} & The socket numer \\
+\hline
+{\em g} & The graph \\
+\hline
+{\em message} & The message send by the client \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+Method to set the number of nodes of the graph 

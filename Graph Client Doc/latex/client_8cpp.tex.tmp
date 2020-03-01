@@ -1,0 +1,133 @@
+\section{C\+Lion\+Projects/untitled/\+Client/client.cpp File Reference}
+\label{client_8cpp}\index{C\+Lion\+Projects/untitled/\+Client/client.\+cpp@{C\+Lion\+Projects/untitled/\+Client/client.\+cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for client.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ P\+O\+RT}~8080
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ send\+Str\+Message} (string message\+St)
+\item 
+void \textbf{ create\+Graph} (string size)
+\item 
+void \textbf{ create\+Edge} (string start, string \textbf{ end}, string weigth)
+\item 
+void \textbf{ end} ()
+\item 
+string \textbf{ ask\+Answer} ()
+\item 
+string \textbf{ get\+Dijkstra} (string src, string dest)
+\item 
+void \textbf{ initiate\+Client} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ sock} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\label{client_8cpp_a614217d263be1fb1a5f76e2ff7be19a2}} 
+\index{client.\+cpp@{client.\+cpp}!P\+O\+RT@{P\+O\+RT}}
+\index{P\+O\+RT@{P\+O\+RT}!client.\+cpp@{client.\+cpp}}
+\subsubsection{P\+O\+RT}
+{\footnotesize\ttfamily \#define P\+O\+RT~8080}
+
+
+
+\subsection{Function Documentation}
+\mbox{\label{client_8cpp_a73d33b8e198870fde6ecf569593f2177}} 
+\index{client.\+cpp@{client.\+cpp}!ask\+Answer@{ask\+Answer}}
+\index{ask\+Answer@{ask\+Answer}!client.\+cpp@{client.\+cpp}}
+\subsubsection{ask\+Answer()}
+{\footnotesize\ttfamily string ask\+Answer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Waits for answer from server \begin{DoxyReturn}{Returns}
+Answer from server 
+\end{DoxyReturn}
+\mbox{\label{client_8cpp_a84311d819f2a8eadbaca4b5dfb5a40f7}} 
+\index{client.\+cpp@{client.\+cpp}!create\+Edge@{create\+Edge}}
+\index{create\+Edge@{create\+Edge}!client.\+cpp@{client.\+cpp}}
+\subsubsection{create\+Edge()}
+{\footnotesize\ttfamily void create\+Edge (\begin{DoxyParamCaption}\item[{string}]{start,  }\item[{string}]{end,  }\item[{string}]{weigth }\end{DoxyParamCaption})}
+
+Tells the server to create an edge 
+\begin{DoxyParams}{Parameters}
+{\em start} & Node to start from \\
+\hline
+{\em end} & Node to get to \\
+\hline
+{\em weigth} & Weigth of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\label{client_8cpp_a0afabd2a517298c77d89d2eef537c482}} 
+\index{client.\+cpp@{client.\+cpp}!create\+Graph@{create\+Graph}}
+\index{create\+Graph@{create\+Graph}!client.\+cpp@{client.\+cpp}}
+\subsubsection{create\+Graph()}
+{\footnotesize\ttfamily void create\+Graph (\begin{DoxyParamCaption}\item[{string}]{size }\end{DoxyParamCaption})}
+
+Tells server to create graph 
+\begin{DoxyParams}{Parameters}
+{\em size} & Number of nodes for the graph \\
+\hline
+\end{DoxyParams}
+\mbox{\label{client_8cpp_aaf81d3fdaf258088d7692fa70cece087}} 
+\index{client.\+cpp@{client.\+cpp}!end@{end}}
+\index{end@{end}!client.\+cpp@{client.\+cpp}}
+\subsubsection{end()}
+{\footnotesize\ttfamily void end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Tells server to end the connection \mbox{\label{client_8cpp_abe3c1a09d8a97249b12e174b0b6fe229}} 
+\index{client.\+cpp@{client.\+cpp}!get\+Dijkstra@{get\+Dijkstra}}
+\index{get\+Dijkstra@{get\+Dijkstra}!client.\+cpp@{client.\+cpp}}
+\subsubsection{get\+Dijkstra()}
+{\footnotesize\ttfamily string get\+Dijkstra (\begin{DoxyParamCaption}\item[{string}]{src,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+Tells the server to calculate the shortest path 
+\begin{DoxyParams}{Parameters}
+{\em src} & Start node \\
+\hline
+{\em dest} & End node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shortest path 
+\end{DoxyReturn}
+\mbox{\label{client_8cpp_a68ca703306cdf41a6c437323bcead047}} 
+\index{client.\+cpp@{client.\+cpp}!initiate\+Client@{initiate\+Client}}
+\index{initiate\+Client@{initiate\+Client}!client.\+cpp@{client.\+cpp}}
+\subsubsection{initiate\+Client()}
+{\footnotesize\ttfamily void initiate\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initiates the client, connects to the server \mbox{\label{client_8cpp_a6067b6436ed3d55e27cf993a1d346a09}} 
+\index{client.\+cpp@{client.\+cpp}!send\+Str\+Message@{send\+Str\+Message}}
+\index{send\+Str\+Message@{send\+Str\+Message}!client.\+cpp@{client.\+cpp}}
+\subsubsection{send\+Str\+Message()}
+{\footnotesize\ttfamily void send\+Str\+Message (\begin{DoxyParamCaption}\item[{string}]{message\+St }\end{DoxyParamCaption})}
+
+Sends string message to socket 
+\begin{DoxyParams}{Parameters}
+{\em message\+St} & message \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\label{client_8cpp_a5903d0b282fc5eae503de618f896b5e1}} 
+\index{client.\+cpp@{client.\+cpp}!sock@{sock}}
+\index{sock@{sock}!client.\+cpp@{client.\+cpp}}
+\subsubsection{sock}
+{\footnotesize\ttfamily int sock =0}
+
